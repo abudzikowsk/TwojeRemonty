@@ -1,0 +1,14 @@
+﻿@model List<OfferViewModel>
+<a class="btn btn-primary" asp-controller="Offers" asp-action="Add">Add new offer</a>
+
+@foreach (var offer in Model)
+       {
+<div class="card">
+    <p>@offer.Description</p>
+    <p>@offer.City</p>
+    <p>@offer.LowerPrice</p>
+    <p>@offer.UpperPrice</p>
+    <p>@offer.Specialization</p>
+    <p>@offer.Photo</p>
+</div>
+       }

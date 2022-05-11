@@ -1,12 +1,10 @@
 ﻿using System;
-using Microsoft.AspNetCore.Identity;
+using TwojeRemonty.Data.Entity;
 
-namespace TwojeRemonty.Data.Entity
+namespace TwojeRemonty.Models
 {
-	public class Offer
+	public class OfferViewModel
 	{
-        public int Id { get; set; }
-        public string UserId { get; set; }
         public Specializations Specialization { get; set; }
         public string City { get; set; }
         public decimal LowerPrice { get; set; }
@@ -14,7 +12,6 @@ namespace TwojeRemonty.Data.Entity
         public string Description { get; set; }
         public string Photo { get; set; }
 
-        public IdentityUser User { get; set; }
     }
 }
 

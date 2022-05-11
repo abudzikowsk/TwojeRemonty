@@ -1,0 +1,22 @@
+﻿@model AddOfferViewModel
+
+<form method="post">
+    <label asp-for="@Model.Specialization">Specjalizacja</label>
+    <select asp-for="@Model.Specialization" asp-items="@Model.SpecializationList">
+    </select>
+
+    <label asp-for="@Model.City">Miasto</label>
+    <input type="text" asp-for="@Model.City" />
+
+    <label asp-for="@Model.LowerPrice">Min</label>
+    <input type="number" asp-for="@Model.LowerPrice" />
+
+    <label asp-for="@Model.UpperPrice">Max</label>
+    <input type="number" asp-for="@Model.UpperPrice" />
+
+    <label asp-for="@Model.Description">Opis</label>
+    <input type="text" asp-for="@Model.Description" />
+
+    <button type="submit">Dodaj</button>
+
+</form> 

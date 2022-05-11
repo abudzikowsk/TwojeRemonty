@@ -10,6 +10,9 @@
   <ItemGroup>
     <None Remove="Data\Entity\" />
     <None Remove="Data\Migrations\" />
+    <None Remove="Views\Offers\" />
+    <None Remove="Data\Repositories\" />
+    <None Remove="Models\AddOffer.ViewModelcs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.5" />
@@ -31,5 +34,7 @@
   <ItemGroup>
     <Folder Include="Data\Entity\" />
     <Folder Include="Data\Migrations\" />
+    <Folder Include="Views\Offers\" />
+    <Folder Include="Data\Repositories\" />
   </ItemGroup>
 </Project>

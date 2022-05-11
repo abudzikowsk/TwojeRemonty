@@ -1,20 +1,19 @@
 ﻿using System;
-using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using TwojeRemonty.Data.Entity;
 
-namespace TwojeRemonty.Data.Entity
+namespace TwojeRemonty.Models
 {
-	public class Offer
+	public class AddOfferViewModel
 	{
-        public int Id { get; set; }
-        public string UserId { get; set; }
         public Specializations Specialization { get; set; }
         public string City { get; set; }
         public decimal LowerPrice { get; set; }
         public decimal UpperPrice { get; set; }
         public string Description { get; set; }
-        public string Photo { get; set; }
+        public IFormFile Photo { get; set; }
 
-        public IdentityUser User { get; set; }
+        public List<SelectListItem> SpecializationList { get; set; }
     }
 }
 

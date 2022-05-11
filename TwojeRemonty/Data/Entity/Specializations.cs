@@ -10,7 +10,8 @@ namespace TwojeRemonty.Data.Entity
 		Glazier,
 		Carpenter,
 		Welder,
-		EquipmentAndTools
+		EquipmentAndTools,
+		InteriorDesign
 	}
 }
 
