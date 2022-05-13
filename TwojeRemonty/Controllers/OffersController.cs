@@ -5,6 +5,7 @@ using TwojeRemonty.Data.Entity;
 using TwojeRemonty.Data.Repositories;
 using TwojeRemonty.Models;
 using Microsoft.AspNetCore.Authorization;
+using TwojeRemonty.Services;
 
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -14,10 +15,12 @@ namespace TwojeRemonty.Controllers
     public class OffersController : Controller
     {
         private readonly OfferRepository offersRepository;
+        private readonly FileService fileService;
 
-        public OffersController(OfferRepository offersRepository)
+        public OffersController(OfferRepository offersRepository, FileService fileService)
         {
             this.offersRepository = offersRepository;
+            this.fileService = fileService;
         }
         // GET: /<controller>/
         public IActionResult Index()
@@ -33,7 +36,8 @@ namespace TwojeRemonty.Controllers
                     LowerPrice = offer.LowerPrice,
                     UpperPrice = offer.UpperPrice,
                     Specialization = offer.Specialization,
-                    Photo = offer.Photo
+                    Photo = offer.Photo,
+                    Id = offer.Id
                 };
 
                 offersList.Add(offerViewModel);
@@ -62,6 +66,7 @@ namespace TwojeRemonty.Controllers
         public IActionResult Add(AddOfferViewModel viewModel)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var fileName = fileService.SavePicture(viewModel.Photo);
 
             var newOffer = new Offer
             {
@@ -71,10 +76,16 @@ namespace TwojeRemonty.Controllers
                 Specialization = viewModel.Specialization,
                 Description = viewModel.Description,
                 UserId = userId,
-                Photo = "TODO"
+                Photo = fileName
             };
 
             offersRepository.Add(newOffer);
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult Delete(int id)
+        {
+            offersRepository.Delete(id);
             return RedirectToAction("Index");
         }
     }

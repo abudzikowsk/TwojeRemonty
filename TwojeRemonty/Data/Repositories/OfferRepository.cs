@@ -23,6 +23,19 @@ namespace TwojeRemonty.Data.Repositories
             context.Offers.Add(offer);
             context.SaveChanges();
         }
+
+        public void Delete(int id)
+        {
+            var offer = context.Offers.SingleOrDefault(o => o.Id == id);
+
+            if (offer == null)
+            {
+                return;
+            }
+
+            context.Offers.Remove(offer);
+            context.SaveChanges();
+        }
 	}
 }
 

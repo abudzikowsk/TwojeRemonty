@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using TwojeRemonty.Data;
 using TwojeRemonty.Data.Repositories;
+using TwojeRemonty.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
@@ -15,6 +16,8 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<OfferRepository>();
+
+builder.Services.AddScoped<FileService>();
 
 var app = builder.Build();
 

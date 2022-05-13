@@ -1,6 +1,6 @@
 ﻿@model AddOfferViewModel
 
-<form method="post">
+<form method="post" enctype="multipart/form-data">
     <label asp-for="@Model.Specialization">Specjalizacja</label>
     <select asp-for="@Model.Specialization" asp-items="@Model.SpecializationList">
     </select>
@@ -16,6 +16,9 @@
 
     <label asp-for="@Model.Description">Opis</label>
     <input type="text" asp-for="@Model.Description" />
+
+    <label asp-for="@Model.Photo">Zdjęcie</label>
+    <input type="file" asp-for="@Model.Photo" />
 
     <button type="submit">Dodaj</button>
 
