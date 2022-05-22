@@ -6,7 +6,7 @@ using TwojeRemonty.Data.Entity;
 
 namespace TwojeRemonty.Models
 {
-	public class AddOfferViewModel
+	public class EditOfferViewModel
 	{
         [Required]
         public Specializations Specialization { get; set; }

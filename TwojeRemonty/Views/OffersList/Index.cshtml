@@ -1,0 +1,14 @@
+﻿@model List<OfferViewModel>
+@foreach (var viewModel in Model)
+            {
+                <div>
+                    <p>@viewModel.City</p>
+                    <p>@viewModel.Description</p>
+                    <p>@viewModel.Id</p>
+                    <p>@viewModel.LowerPrice</p>
+                    <p>@viewModel.UpperPrice</p>
+                    <p>@viewModel.Specialization</p>
+                    <p>@viewModel.Tittle</p>
+                    <img src ="@viewModel.Photo"/>
+                </div>
+            } 

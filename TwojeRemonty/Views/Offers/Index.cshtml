@@ -9,7 +9,9 @@
     <p>@offer.LowerPrice</p>
     <p>@offer.UpperPrice</p>
     <p>@offer.Specialization</p>
+    <p>@offer.Tittle</p>
     <img src="@offer.Photo"/>
+    <a class="btn btn-secondary" asp-controller="Offers" asp-action="Edit" asp-route-id="@offer.Id" >Edycja</a>
     <form method="post" asp-action="Delete" asp-controller="Offers">
         <input name="Id" value="@offer.Id" hidden="hidden" />
         <button type="submit" class="btn btn-danger">Usuń</button>

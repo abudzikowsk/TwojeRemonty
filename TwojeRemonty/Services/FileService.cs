@@ -11,6 +11,18 @@ namespace TwojeRemonty.Services
 			newFile.Close();
 			return fileName;
         }
+
+		public void DeletePicture(string fileName)
+        {
+			var path = "wwwroot/" + fileName;
+
+			if (!File.Exists(path))
+            {
+				return;
+            }
+
+            File.Delete(path);
+        }
 	}
 }
 

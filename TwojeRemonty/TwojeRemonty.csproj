@@ -14,6 +14,8 @@
     <None Remove="Data\Repositories\" />
     <None Remove="Models\AddOffer.ViewModelcs" />
     <None Remove="Services\" />
+    <None Remove="Views\OffersList\" />
+    <None Remove="Extensions\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.5" />
@@ -38,6 +40,8 @@
     <Folder Include="Views\Offers\" />
     <Folder Include="Data\Repositories\" />
     <Folder Include="Services\" />
+    <Folder Include="Views\OffersList\" />
+    <Folder Include="Extensions\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\Zrzut ekranu 2021-10-29 o 21.46.26.png" />

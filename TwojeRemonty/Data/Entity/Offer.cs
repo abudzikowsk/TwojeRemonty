@@ -13,6 +13,7 @@ namespace TwojeRemonty.Data.Entity
         public decimal UpperPrice { get; set; }
         public string Description { get; set; }
         public string Photo { get; set; }
+        public string Tittle { get; set; }
 
         public IdentityUser User { get; set; }
     }

@@ -12,6 +12,7 @@ namespace TwojeRemonty.Models
         public string Description { get; set; }
         public string Photo { get; set; }
         public int Id { get; set; }
+        public string Tittle { get; set; }
 
     }
 }

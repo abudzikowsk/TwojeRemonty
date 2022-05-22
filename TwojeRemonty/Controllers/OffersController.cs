@@ -6,6 +6,7 @@ using TwojeRemonty.Data.Repositories;
 using TwojeRemonty.Models;
 using Microsoft.AspNetCore.Authorization;
 using TwojeRemonty.Services;
+using TwojeRemonty.Extensions;
 
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -37,34 +38,31 @@ namespace TwojeRemonty.Controllers
                     UpperPrice = offer.UpperPrice,
                     Specialization = offer.Specialization,
                     Photo = offer.Photo,
-                    Id = offer.Id
+                    Id = offer.Id,
+                    Tittle = offer.Tittle
+
                 };
 
                 offersList.Add(offerViewModel);
             }
             return View(offersList);
         }
-
+        
         public IActionResult Add()
         {
-            var values = (Specializations[])Enum.GetValues(typeof(Specializations));
-            var specializationSelect = new List<SelectListItem>();
-            foreach (var value in values)
-            {
-                var listItem = new SelectListItem
-                {
-                    Text = value.ToString(),
-                    Value = value.ToString()
-                };
-
-                specializationSelect.Add(listItem);
-            }
-            return View(new AddOfferViewModel {SpecializationList = specializationSelect});
+            
+            return View(new AddOfferViewModel { SpecializationList = SpecializationsExtensions.ToSelectOptions() });
         }
 
         [HttpPost]
         public IActionResult Add(AddOfferViewModel viewModel)
         {
+            if (!ModelState.IsValid)
+            {
+                viewModel.SpecializationList = SpecializationsExtensions.ToSelectOptions();
+                return View(viewModel);
+            }
+
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var fileName = fileService.SavePicture(viewModel.Photo);
 
@@ -76,18 +74,88 @@ namespace TwojeRemonty.Controllers
                 Specialization = viewModel.Specialization,
                 Description = viewModel.Description,
                 UserId = userId,
-                Photo = fileName
+                Photo = fileName,
+                Tittle = viewModel.Tittle
             };
 
             offersRepository.Add(newOffer);
             return RedirectToAction("Index");
         }
 
+        [HttpPost]
         public IActionResult Delete(int id)
         {
+            var offer = offersRepository.GetByOfferId(id);
+
             offersRepository.Delete(id);
+
+            fileService.DeletePicture(offer.Photo);
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet("Edit/{id}")]
+        public IActionResult Edit(int id)
+        {
+            var offer = offersRepository.GetByOfferId(id);
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (offer == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            if(offer.UserId != userId)
+            {
+                return Unauthorized();
+            }
+
+            var viewModel = new EditOfferViewModel
+            {
+                City = offer.City,
+                Description = offer.Description,
+                LowerPrice = offer.LowerPrice,
+                UpperPrice = offer.UpperPrice,
+                Specialization = offer.Specialization,
+                Tittle = offer.Tittle,
+                SpecializationList = SpecializationsExtensions.ToSelectOptions()
+            };
+
+            return View(viewModel);
+        }
+
+        [HttpPost("Edit/{id}")]
+        public IActionResult Edit(int id, EditOfferViewModel editOfferViewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                editOfferViewModel.SpecializationList = SpecializationsExtensions.ToSelectOptions();
+                return View(editOfferViewModel);
+            }
+
+            var offer = offersRepository.GetByOfferId(id);
+
+            if (offer == null)
+            {
+                return RedirectToAction("Index");
+            }
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if(offer.UserId != userId)
+            {
+                return Unauthorized();
+            }
+
+            offer.City = editOfferViewModel.City;
+            offer.Description = editOfferViewModel.Description;
+            offer.Specialization = editOfferViewModel.Specialization;
+            offer.Tittle = editOfferViewModel.Tittle;
+            offer.LowerPrice = editOfferViewModel.LowerPrice;
+            offer.UpperPrice = editOfferViewModel.UpperPrice;
+
+            offersRepository.SaveChanges();
             return RedirectToAction("Index");
         }
     }
 }
-
+    

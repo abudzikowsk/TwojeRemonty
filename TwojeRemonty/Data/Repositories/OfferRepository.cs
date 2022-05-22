@@ -18,6 +18,11 @@ namespace TwojeRemonty.Data.Repositories
             return context.Offers.Where(o => o.UserId == userId).ToList(); 
         }
 
+        public Offer GetByOfferId(int id)
+        {
+            return context.Offers.SingleOrDefault(o => o.Id == id);
+        }
+
         public void Add(Offer offer)
         {
             context.Offers.Add(offer);
@@ -34,6 +39,16 @@ namespace TwojeRemonty.Data.Repositories
             }
 
             context.Offers.Remove(offer);
+            context.SaveChanges();
+        }
+
+        public List<Offer> GetAll()
+        {
+            return context.Offers.ToList();
+        }
+
+        public void SaveChanges()
+        {
             context.SaveChanges();
         }
 	}
