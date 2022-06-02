@@ -42,9 +42,19 @@ namespace TwojeRemonty.Data.Repositories
             context.SaveChanges();
         }
 
-        public List<Offer> GetAll()
+        public List<Offer> GetAll(string search)
         {
-            return context.Offers.ToList();
+            var normalizedSearch = search?.ToLower();
+            var offers = context.Offers.AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(search))
+            {
+                offers = offers.Where(o => o.City.ToLower().Contains(normalizedSearch)
+                || o.Description.ToLower().Contains(normalizedSearch)
+                || o.Tittle.ToLower().Contains(normalizedSearch));
+            }
+
+            return offers.ToList();
         }
 
         public void SaveChanges()

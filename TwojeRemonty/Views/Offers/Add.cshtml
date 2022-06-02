@@ -1,11 +1,24 @@
 ﻿@model AddOfferViewModel
 
 <form method="post" enctype="multipart/form-data">
+
+    <div class="mt-3">
+        <label class="form-label" asp-for="@Model.Tittle">Tytuł</label>
+        <input class="form-control" type="text" asp-for="@Model.Tittle" />
+        <span class="text-danger " asp-validation-for="@Model.Tittle"></span>
+    </div>
+
     <div>
         <label class="form-label" asp-for="@Model.Specialization">Specjalizacja</label>
         <select class="form-select" asp-for="@Model.Specialization" asp-items="@Model.SpecializationList">
         </select>
         <span class="text-danger" asp-validation-for="@Model.Specialization"></span>
+    </div>
+
+    <div class="mt-3">
+        <label class="form-label" asp-for="@Model.Description">Opis</label>
+        <input class="form-control" type="text" asp-for="@Model.Description" />
+        <span class="text-danger" asp-validation-for="@Model.Description"></span>
     </div>
 
     <div class="mt-3">
@@ -27,21 +40,9 @@
     </div>
 
     <div class="mt-3">
-        <label class="form-label" asp-for="@Model.Description">Opis</label>
-        <input class="form-control" type="text" asp-for="@Model.Description" />
-        <span class="text-danger" asp-validation-for="@Model.Description"></span>
-    </div>
-
-    <div class="mt-3">
         <label class="form-label" asp-for="@Model.Photo">Zdjęcie</label>
         <input class="form-control" type="file" asp-for="@Model.Photo" />
         <span class="text-danger" asp-validation-for="@Model.Photo"></span>
-    </div>
-
-    <div class="mt-3">
-        <label class="form-label" asp-for="@Model.Tittle">Tytuł</label>
-        <input class="form-control" type="text" asp-for="@Model.Tittle" />
-        <span class="text-danger " asp-validation-for="@Model.Tittle"></span>
     </div>
 
     <button type="submit" class="btn btn-primary mt-5">Dodaj</button>

@@ -19,10 +19,10 @@ namespace TwojeRemonty.Controllers
             this.offerRepository = offerRepository;
         }
         // GET: /<controller>/
-        public IActionResult Index()
+        public IActionResult Index(string search)
         {
             var offerList = new List<OfferViewModel>();
-            var offers = offerRepository.GetAll();
+            var offers = offerRepository.GetAll(search);
 
             foreach(var offer in offers)
             {
@@ -40,8 +40,11 @@ namespace TwojeRemonty.Controllers
 
                 offerList.Add(viewModel);
             }
-            return View(offerList);
+            return View(new OffersListViewModel { OffersList = offerList, Search = search });
+
+            
         }
+
 
 
     }

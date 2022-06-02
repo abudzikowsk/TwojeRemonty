@@ -1,10 +1,13 @@
-﻿@model List<OfferViewModel>
-@foreach (var viewModel in Model)
+﻿@model OffersListViewModel
+<form method="get">
+    <input name="search" type="text" value="@Model.Search"/>
+    <button type="submit" class="btn btn-primary">Wyszukaj</button>
+</form>
+@foreach (var viewModel in Model.OffersList)
             {
                 <div>
                     <p>@viewModel.City</p>
                     <p>@viewModel.Description</p>
-                    <p>@viewModel.Id</p>
                     <p>@viewModel.LowerPrice</p>
                     <p>@viewModel.UpperPrice</p>
                     <p>@viewModel.Specialization</p>

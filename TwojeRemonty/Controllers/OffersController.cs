@@ -118,6 +118,7 @@ namespace TwojeRemonty.Controllers
                 UpperPrice = offer.UpperPrice,
                 Specialization = offer.Specialization,
                 Tittle = offer.Tittle,
+                PhotoSrc = offer.Photo,
                 SpecializationList = SpecializationsExtensions.ToSelectOptions()
             };
 
@@ -144,6 +145,13 @@ namespace TwojeRemonty.Controllers
             if(offer.UserId != userId)
             {
                 return Unauthorized();
+            }
+
+            if (editOfferViewModel.Photo.Length > 0)
+            {
+                fileService.DeletePicture(offer.Photo);
+                var newPhoto = fileService.SavePicture(editOfferViewModel.Photo);
+                offer.Photo = newPhoto;
             }
 
             offer.City = editOfferViewModel.City;

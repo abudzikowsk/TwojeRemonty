@@ -25,7 +25,6 @@ namespace TwojeRemonty.Models
         [Required]
         public string Description { get; set; }
 
-        [Required]
         public IFormFile Photo { get; set; }
 
         [Required]
@@ -33,6 +32,9 @@ namespace TwojeRemonty.Models
 
         [ValidateNever]
         public List<SelectListItem> SpecializationList { get; set; }
+
+        [ValidateNever]
+        public string PhotoSrc { get; set; }
     }
 }
 
