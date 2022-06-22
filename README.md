@@ -1,12 +1,6 @@
 #### Concept
-A prototype of the game focused on avoiding enemies and collecting items that improve the player's condition.
+An application connecting principals and contractors of the renovation industry. Contractors can offer their services in the form of an offer on the board, placing their name, minimum and maximum price for the service there, along with a description and a photo gallery of exemplary implementations. The principal may issue a opinion for the work performed by contractors. The user has the option of using the search and applying filters to narrow down the search. The application supports individual user accounts, both for contractors and principals. The application provides an administrator panel that allows you to manage the application.
 
-#### Game
-The main mechanic focuses on using the foreground observation in order to overtake the enemies patrolling the scene and collecting the necessary items.
-Combat is all about firing missiles at enemies, which automatically triggers a response and attack.
+#### Technologies
+ASP .NET NVC, .NET 6, C#, MS SQL, Razor Pages, Entity Framework
 
-#### Interface
-The movement control mechanism is based on the WASD keys or the arrow keys. The space bar is used for shooting. Collecting items is done through collisions with them. A simple window displays the number of items collected, the remaining ammunition and a bar indicating the player's condition.
-
-#### Visual style
-Game style and character appeariance will be based on core objects GameObjects. If necessary, simple objects can be replaced with 3D models or terrain simulating environments.
